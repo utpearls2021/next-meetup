@@ -1,7 +1,7 @@
 import { MongoClient, ObjectId } from "mongodb";
 import Head from "next/head";
 
-export default function MeetupDetail(props) {
+function MeetupDetail(props) {
   const { meetup } = props;
   return (
     <section>
@@ -28,7 +28,7 @@ export async function getStaticPaths() {
   client.close();
 
   return {
-    fallback: true,
+    fallback: false,
     paths: meetups.map(meetup => ({
       params: {
         meetupId: meetup._id.toString()
@@ -63,3 +63,5 @@ export async function getStaticProps(context) {
     }
   }
 }
+
+export default MeetupDetail;
